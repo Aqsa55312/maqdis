@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Layanan — Zurisky.Dev</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border-bottom:1px solid #e2e8f0}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-size:1.4rem;font-weight:900}.logo span{color:#2563eb}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.875rem;font-weight:500;color:#475569;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:#2563eb}
+.nav-links a.active{font-weight:700;border-bottom:2px solid #2563eb;padding-bottom:2px}
+.nav-cta{background:#2563eb;color:#fff;padding:8px 20px;border-radius:99px;font-size:.875rem;font-weight:600}
+.nav-cta:hover{background:#1d4ed8}
+@media(max-width:768px){.nav-links{display:none}}
+main{padding:120px 24px 80px;max-width:1280px;margin:0 auto}
+.page-head{text-align:center;margin-bottom:64px}
+.page-head h1{font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:16px}
+.page-head p{font-size:1.1rem;color:#475569;max-width:600px;margin:0 auto;line-height:1.7}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media(max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:24px;padding:36px;box-shadow:0 2px 16px rgba(0,0,0,.06);border:1px solid #f1f5f9;transition:all .3s;cursor:default}
+.card:hover{box-shadow:0 16px 48px rgba(0,0,0,.12);transform:translateY(-6px)}
+.icon-wrap{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:transform .3s}
+.card:hover .icon-wrap{transform:scale(1.1)}
+.icon-wrap.blue{background:#dbeafe}.icon-wrap.violet{background:#ede9fe}
+.icon-wrap.yellow{background:#fef9c3}.icon-wrap.green{background:#dcfce7}
+.icon-wrap.orange{background:#ffedd5}.icon-wrap.pink{background:#fce7f3}
+.icon-wrap svg{width:32px;height:32px}
+.blue svg{stroke:#2563eb}.violet svg{stroke:#7c3aed}.yellow svg{stroke:#ca8a04}
+.green svg{stroke:#16a34a}.orange svg{stroke:#ea580c}.pink svg{stroke:#db2777}
+.card h3{font-size:1.25rem;font-weight:800;margin-bottom:12px}
+.card p{color:#475569;line-height:1.7;font-size:.95rem}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">ZURISKY<span>.DEV</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="layanan.html" class="active">Layanan</a>
+      <a href="proyek.html">Proyek</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="kontak.html">Kontak</a>
+      <a href="kontak.html" class="nav-cta">Hubungi Kami</a>
+    </div>
+  </div>
+</nav>
+<main>
+  <div class="page-head">
+    <h1>Layanan Kami</h1>
+    <p>Solusi digital terbaik untuk kebutuhanmu. Kami menyediakan layanan komprehensif untuk membantu bisnismu berkembang di era digital.</p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="icon-wrap blue">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <h3>Web Development</h3>
+      <p>Membangun website modern, cepat, dan responsif menggunakan teknologi terkini.</p>
+    </div>
+    <div class="card">
+      <div class="icon-wrap violet">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      </div>
+      <h3>Mobile Friendly</h3>
+      <p>Desain yang sempurna di semua ukuran layar, dari mobile hingga desktop.</p>
+    </div>
+    <div class="card">
+      <div class="icon-wrap yellow">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <h3>High Performance</h3>
+      <p>Optimasi performa maksimal dengan SSR, lazy loading, dan CDN.</p>
+    </div>
+    <div class="card">
+      <div class="icon-wrap green">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Secure &amp; Reliable</h3>
+      <p>Keamanan enterprise-grade dengan uptime 99.9% terjamin.</p>
+    </div>
+    <div class="card">
+      <div class="icon-wrap orange">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <h3>Analytics &amp; Dashboard</h3>
+      <p>Dashboard interaktif dengan visualisasi data real-time.</p>
+    </div>
+    <div class="card">
+      <div class="icon-wrap pink">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+      </div>
+      <h3>AI Integration</h3>
+      <p>Integrasi fitur AI dan machine learning ke dalam produk digitalmu.</p>
+    </div>
+  </div>
+</main>
+</body>
+</html>

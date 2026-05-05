@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home — Zurisky.Dev</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#0f172a}
+a{text-decoration:none;color:inherit}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);border-bottom:1px solid #e2e8f0}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-size:1.4rem;font-weight:900;letter-spacing:-.02em}
+.logo span{color:#2563eb}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.875rem;font-weight:500;color:#475569;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:#2563eb}
+.nav-links a.active{font-weight:700;border-bottom:2px solid #2563eb;padding-bottom:2px}
+.nav-cta{background:#2563eb;color:#fff;padding:8px 20px;border-radius:99px;font-size:.875rem;font-weight:600;transition:background .2s}
+.nav-cta:hover{background:#1d4ed8}
+/* HERO */
+.hero{padding:140px 24px 100px;position:relative;overflow:hidden;background:#fff}
+.blob1{position:absolute;top:-10%;left:-10%;width:40%;height:40%;background:rgba(147,197,253,.35);border-radius:50%;filter:blur(80px);z-index:0}
+.blob2{position:absolute;bottom:-10%;right:-10%;width:40%;height:40%;background:rgba(196,181,253,.35);border-radius:50%;filter:blur:80px;z-index:0}
+.hero-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr}.hero-img{display:none}.nav-links{display:none}}
+.badge{display:inline-block;padding:6px 16px;background:#dbeafe;color:#1d4ed8;border-radius:99px;font-size:.75rem;font-weight:700;margin-bottom:20px;border:1px solid #bfdbfe}
+h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:900;line-height:1.1;margin-bottom:16px}
+h1 span{color:#2563eb}
+.hero-sub{font-size:1.1rem;color:#475569;line-height:1.75;margin-bottom:36px;max-width:480px}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{background:#2563eb;color:#fff;padding:14px 32px;border-radius:99px;font-weight:700;font-size:1rem;transition:all .2s;box-shadow:0 8px 24px rgba(37,99,235,.3)}
+.btn-primary:hover{background:#1d4ed8;transform:translateY(-2px)}
+.btn-secondary{background:#fff;color:#0f172a;border:2px solid #e2e8f0;padding:14px 32px;border-radius:99px;font-weight:700;font-size:1rem;transition:all .2s}
+.btn-secondary:hover{border-color:#2563eb;color:#2563eb}
+.hero-img img{width:100%;border-radius:24px;box-shadow:0 24px 64px rgba(0,0,0,.12)}
+/* STATS */
+.stats{background:#0f172a;padding:64px 24px}
+.stats-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+@media(max-width:640px){.stats-inner{grid-template-columns:repeat(2,1fr)}}
+.stat-val{font-size:2.8rem;font-weight:900;color:#fff;margin-bottom:6px}
+.stat-label{color:#94a3b8;font-size:.9rem;font-weight:500}
+/* PRODUCTS */
+.products{padding:100px 24px;background:#f8fafc}
+.section-head{text-align:center;margin-bottom:60px}
+.section-head h2{font-size:2rem;font-weight:800;margin-bottom:12px}
+.section-head p{color:#475569;font-size:1.05rem}
+.cards{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media(max-width:900px){.cards{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.07);transition:all .3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.12)}
+.card-top{padding:32px;text-align:center;color:#fff;position:relative}
+.card-top.blue{background:linear-gradient(135deg,#2563eb,#1d4ed8)}
+.card-top.violet{background:linear-gradient(135deg,#7c3aed,#6d28d9)}
+.card-top.orange{background:linear-gradient(135deg,#f97316,#ea580c)}
+.card-arabic{font-size:2.5rem;font-weight:900;margin-bottom:8px}
+.card-badge{display:inline-block;padding:3px 12px;border-radius:99px;font-size:.65rem;font-weight:800;margin-bottom:10px;background:rgba(255,255,255,.25)}
+.card-name{font-size:1.1rem;font-weight:800}
+.card-body{padding:24px}
+.card-desc{color:#475569;font-size:.9rem;line-height:1.6;margin-bottom:16px}
+.card-price{font-size:1.5rem;font-weight:900;margin-bottom:16px}
+.card-link{display:block;text-align:center;padding:12px;border-radius:99px;color:#fff;font-weight:700;font-size:.9rem;transition:filter .2s}
+.card-link:hover{filter:brightness(1.1)}
+.card-link.blue{background:#2563eb}
+.card-link.violet{background:#7c3aed}
+.card-link.orange{background:#f97316}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">ZURISKY<span>.DEV</span></a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="proyek.html">Proyek</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="kontak.html">Kontak</a>
+      <a href="kontak.html" class="nav-cta">Hubungi Kami</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="blob1"></div><div class="blob2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="badge">MINI PROJECT FRONTEND</div>
+      <h1>Selamat Datang di <span>Zurisky.Dev</span></h1>
+      <p class="hero-sub">Mini project frontend modern menggunakan Next.js 14, Tailwind CSS, dan TypeScript. Responsif di semua perangkat.</p>
+      <div class="btn-row">
+        <a href="layanan.html" class="btn-primary">Lihat Layanan →</a>
+        <a href="proyek.html" class="btn-secondary">Lihat Proyek</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&q=80" alt="workspace">
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-inner">
+    <div><div class="stat-val">50+</div><div class="stat-label">Proyek Selesai</div></div>
+    <div><div class="stat-val">99%</div><div class="stat-label">Kepuasan Klien</div></div>
+    <div><div class="stat-val">3+</div><div class="stat-label">Tahun Pengalaman</div></div>
+    <div><div class="stat-val">24/7</div><div class="stat-label">Support Tersedia</div></div>
+  </div>
+</section>
+
+<section class="products">
+  <div class="section-head">
+    <h2>Program Unggulan</h2>
+    <p>Pilih program yang sesuai dengan kebutuhanmu. Tersedia kelas gratis dan premium.</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-top blue"><div class="card-arabic">٣١</div><div class="card-badge">FREE</div><div class="card-name">Ayat Pilihan</div></div>
+      <div class="card-body"><p class="card-desc">Mulai perjalanan hafalanmu dengan ayat-ayat pilihan yang mudah dipelajari untuk pemula.</p><div class="card-price">Gratis</div><a href="product-detail.html#p1" class="card-link blue" onclick="sessionStorage.setItem('pid','1')">Mulai Sekarang</a></div>
+    </div>
+    <div class="card">
+      <div class="card-top violet"><div class="card-arabic">٢٠٠٢</div><div class="card-badge">PREMIUM</div><div class="card-name">10 Hari Hafal Al-Muzzammil</div></div>
+      <div class="card-body"><p class="card-desc">Program intensif 10 hari dipandu instruktur berpengalaman dengan metode terbukti efektif.</p><div class="card-price">Rp 200.000</div><a href="product-detail.html#p2" class="card-link violet" onclick="sessionStorage.setItem('pid','2')">Daftar Sekarang</a></div>
+    </div>
+    <div class="card">
+      <div class="card-top orange"><div class="card-arabic">٢٠٠٢</div><div class="card-badge">PREMIUM</div><div class="card-name">30 Hari Hafal Al-Mulk</div></div>
+      <div class="card-body"><p class="card-desc">Program komprehensif 30 hari lengkap dengan materi tajwid, tafsir, dan sesi review mentor.</p><div class="card-price">Rp 200.000</div><a href="product-detail.html#p3" class="card-link orange" onclick="sessionStorage.setItem('pid','3')">Daftar Sekarang</a></div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

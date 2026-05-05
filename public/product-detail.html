@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Program — Maqdis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:   #2563eb;
+      --blue-d: #1d4ed8;
+      --violet: #7c3aed;
+      --violet-d: #6d28d9;
+      --orange: #f97316;
+      --orange-d: #ea6c10;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-900: #0f172a;
+      --green:  #22c55e;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--slate-50);
+      color: var(--slate-900);
+      min-height: 100vh;
+    }
+
+    /* ── Top nav bar ── */
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .topbar svg { color: var(--slate-500); flex-shrink: 0; }
+    .topbar a {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--slate-500);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .topbar a:hover { color: var(--blue); }
+
+    /* ── Tab switcher ── */
+    .tabs-wrap {
+      max-width: 740px;
+      margin: 36px auto 0;
+      padding: 0 20px;
+    }
+    .tabs-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: var(--slate-400);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 8px 20px;
+      border-radius: 99px;
+      border: 2px solid #e2e8f0;
+      background: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--slate-600);
+      transition: all .2s;
+    }
+    .tab-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .tab-btn.active-blue   { background: var(--blue);   color: #fff; border-color: var(--blue);   }
+    .tab-btn.active-violet { background: var(--violet); color: #fff; border-color: var(--violet); }
+    .tab-btn.active-orange { background: var(--orange); color: #fff; border-color: var(--orange); }
+
+    /* ── Card ── */
+    .page { max-width: 740px; margin: 28px auto 60px; padding: 0 20px; }
+
+    .card {
+      background: #fff;
+      border-radius: 28px;
+      box-shadow: 0 8px 40px 0 rgba(15,23,42,.10);
+      overflow: hidden;
+      display: none;
+      animation: fadeUp .35s ease both;
+    }
+    .card.visible { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* header strip */
+    .card-header {
+      padding: 52px 24px 44px;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+    .card-header.blue   { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+    .card-header.violet { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+    .card-header.orange { background: linear-gradient(135deg, #f97316, #ea580c); }
+
+    .arabic {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -.02em;
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 99px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+    .badge.free   { background: rgba(34,197,94,.9); }
+    .badge.premium-v { background: rgba(139,92,246,.9); }
+    .badge.premium-o { background: rgba(249,115,22,.9); }
+
+    .card-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+
+    /* body */
+    .card-body {
+      padding: 36px 40px 44px;
+    }
+    @media (max-width: 520px) { .card-body { padding: 28px 20px 36px; } }
+
+    .description {
+      font-size: 1rem;
+      color: var(--slate-600);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .price {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--slate-900);
+    }
+    .price-note {
+      font-size: 0.875rem;
+      color: var(--slate-400);
+    }
+
+    .divider {
+      height: 1px;
+      background: #e2e8f0;
+      margin-bottom: 28px;
+    }
+
+    .features-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--slate-400);
+      margin-bottom: 14px;
+    }
+    .features { list-style: none; margin-bottom: 36px; }
+    .features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 9px 0;
+      font-size: 0.95rem;
+      color: var(--slate-700);
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .features li:last-child { border-bottom: none; }
+    .check-icon { flex-shrink: 0; margin-top: 2px; }
+
+    .cta-btn {
+      display: block;
+      width: 100%;
+      padding: 17px;
+      border: none;
+      border-radius: 99px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s, filter .15s;
+      letter-spacing: .01em;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); filter: brightness(1.05); }
+    .cta-btn:active { transform: translateY(0); }
+    .cta-btn.blue   { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+    .cta-btn.violet { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+    .cta-btn.orange { background: linear-gradient(135deg, #f97316, #ea580c); }
+
+    /* route pill */
+    .route-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #0f172a;
+      color: #94a3b8;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      padding: 5px 14px;
+      border-radius: 8px;
+      margin-top: 28px;
+    }
+    .route-pill span { color: #f8fafc; font-weight: 600; }
+
+    .info-box {
+      margin-top: 14px;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 0.82rem;
+      color: #0369a1;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top nav -->
+  <div class="topbar">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+    </svg>
+    <a href="#">Kembali ke Layanan</a>
+  </div>
+
+  <!-- Tab switcher -->
+  <div class="tabs-wrap">
+    <div class="tabs-label">Pilih Program (simulasi route /product/[id])</div>
+    <div class="tabs">
+      <button class="tab-btn active-blue" onclick="showProduct(1)" id="tab-1">
+        /product/1 — Ayat Pilihan
+      </button>
+      <button class="tab-btn" onclick="showProduct(2)" id="tab-2">
+        /product/2 — Al-Muzzammil
+      </button>
+      <button class="tab-btn" onclick="showProduct(3)" id="tab-3">
+        /product/3 — Al-Mulk
+      </button>
+    </div>
+
+    <div class="route-pill" id="route-pill">
+      GET&nbsp;<span id="route-text">/product/1</span>
+      &nbsp;→ 200 OK
+    </div>
+
+    <div class="info-box">
+      📌 <strong>Cara kerja di Next.js:</strong> Setiap card di bawah merepresentasikan satu halaman statis yang di-generate oleh <code>generateStaticParams()</code>. Route <code>/product/1</code>, <code>/product/2</code>, dan <code>/product/3</code> semuanya di-pre-render saat build.
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="page">
+
+    <!-- Product 1: Ayat Pilihan -->
+    <div class="card visible" id="card-1">
+      <div class="card-header blue">
+        <div class="arabic">٣١</div>
+        <div class="badge free">FREE</div>
+        <div class="card-title">Ayat Pilihan</div>
+      </div>
+      <div class="card-body">
+        <p class="description">
+          Mulai perjalanan hafalanmu dengan ayat-ayat pilihan yang mudah dipelajari.
+          Program ini dirancang khusus untuk pemula yang ingin memulai hafalan Al-Quran
+          dengan metode yang menyenangkan.
+        </p>
+        <div class="price-row">
+          <span class="price">Gratis</span>
+          <span class="price-note">Akses selamanya</span>
+        </div>
+        <div class="divider"></div>
+        <div class="features-title">Yang kamu dapatkan</div>
+        <ul class="features">
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            31 ayat pilihan terbaik
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Metode pembelajaran interaktif
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Akses selamanya tanpa biaya
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Cocok untuk semua usia
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Progress tracking tersedia
+          </li>
+        </ul>
+        <button class="cta-btn blue">Mulai Sekarang</button>
+      </div>
+    </div>
+
+    <!-- Product 2: Al-Muzzammil -->
+    <div class="card" id="card-2">
+      <div class="card-header violet">
+        <div class="arabic">٢٠٠٢</div>
+        <div class="badge premium-v">PREMIUM</div>
+        <div class="card-title">10 Hari Hafal Al-Muzzammil</div>
+      </div>
+      <div class="card-body">
+        <p class="description">
+          Program intensif 10 hari yang dirancang untuk membantu kamu menghafal
+          Surah Al-Muzzammil secara lengkap. Dipandu oleh instruktur berpengalaman
+          dengan metode yang terbukti efektif.
+        </p>
+        <div class="price-row">
+          <span class="price">Rp 200.000</span>
+          <span class="price-note">Bayar sekali, akses selamanya</span>
+        </div>
+        <div class="divider"></div>
+        <div class="features-title">Yang kamu dapatkan</div>
+        <ul class="features">
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Surah Al-Muzzammil 20 ayat lengkap
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Program terstruktur 10 hari
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Bimbingan instruktur berpengalaman
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Sertifikat kelulusan resmi
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Grup support eksklusif
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Materi audio berkualitas tinggi
+          </li>
+        </ul>
+        <button class="cta-btn violet">Daftar Sekarang</button>
+      </div>
+    </div>
+
+    <!-- Product 3: Al-Mulk -->
+    <div class="card" id="card-3">
+      <div class="card-header orange">
+        <div class="arabic">٢٠٠٢</div>
+        <div class="badge premium-o">PREMIUM</div>
+        <div class="card-title">30 Hari Hafal Al-Mulk</div>
+      </div>
+      <div class="card-body">
+        <p class="description">
+          Program komprehensif 30 hari untuk menghafal Surah Al-Mulk secara menyeluruh.
+          Dilengkapi dengan materi tajwid, tafsir singkat, dan sesi review intensif
+          bersama mentor.
+        </p>
+        <div class="price-row">
+          <span class="price">Rp 200.000</span>
+          <span class="price-note">Bayar sekali, akses selamanya</span>
+        </div>
+        <div class="divider"></div>
+        <div class="features-title">Yang kamu dapatkan</div>
+        <ul class="features">
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Surah Al-Mulk 30 ayat lengkap
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Program terstruktur 30 hari
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Materi tajwid dan tafsir
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Sesi review dengan mentor
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Sertifikat kelulusan resmi
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Grup support eksklusif
+          </li>
+          <li>
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Akses materi selamanya
+          </li>
+        </ul>
+        <button class="cta-btn orange">Daftar Sekarang</button>
+      </div>
+    </div>
+
+  </div><!-- /page -->
+
+  <script>
+    const colorMap = {
+      1: 'blue',
+      2: 'violet',
+      3: 'orange'
+    };
+
+    function showProduct(id) {
+      // Hide all cards
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('visible'));
+      // Reset all tabs
+      document.querySelectorAll('.tab-btn').forEach(t => {
+        t.className = 'tab-btn';
+      });
+
+      // Show chosen card
+      const card = document.getElementById('card-' + id);
+      card.classList.add('visible');
+      // Force reflow for animation replay
+      card.style.animation = 'none';
+      card.offsetHeight; // reflow
+      card.style.animation = '';
+
+      // Activate tab
+      const tab = document.getElementById('tab-' + id);
+      tab.classList.add('active-' + colorMap[id]);
+
+      // Update route pill
+      document.getElementById('route-text').textContent = '/product/' + id;
+    }
+  </script>
+</body>
+</html>
