@@ -10,9 +10,9 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { platform: "Instagram", url: "https://instagram.com/zurisky", icon: Camera },
-    { platform: "LinkedIn", url: "https://linkedin.com/in/zurisky", icon: Briefcase },
-    { platform: "GitHub", url: "https://github.com/zurisky", icon: GitBranch },
+    { platform: "Instagram", url: "https://instagram.com/", icon: Camera },
+    { platform: "LinkedIn", url: "https://linkedin.com/in/zurisky-aqsa-firmansyah/", icon: Briefcase },
+    { platform: "GitHub", url: "https://github.com/Aqsa55312", icon: GitBranch },
   ];
 
   return (
